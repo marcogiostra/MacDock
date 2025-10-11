@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\svil_Giosh\\006_MacDock\\MacDock\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{416E1FAB-E144-4241-983D-A0A58D87FD7A}|MacDock\\MacDock.csproj|d:\\svil_giosh\\006_macdock\\macdock\\macdock\\changes.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{416E1FAB-E144-4241-983D-A0A58D87FD7A}|MacDock\\MacDock.csproj|solutionrelative:macdock\\changes.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CHANGES.md",
+              "DocumentMoniker": "D:\\svil_Giosh\\006_MacDock\\MacDock\\MacDock\\CHANGES.md",
+              "RelativeDocumentMoniker": "MacDock\\CHANGES.md",
+              "ToolTip": "D:\\svil_Giosh\\006_MacDock\\MacDock\\MacDock\\CHANGES.md",
+              "RelativeToolTip": "MacDock\\CHANGES.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-10-11T13:02:16.488Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

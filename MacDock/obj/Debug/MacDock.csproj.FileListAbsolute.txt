@@ -1,0 +1,16 @@
+D:\svil_Giosh\006_MacDocControl\MacDock\MacDock\bin\Debug\MacDock.exe.config
+D:\svil_Giosh\006_MacDocControl\MacDock\MacDock\bin\Debug\MacDock.exe
+D:\svil_Giosh\006_MacDocControl\MacDock\MacDock\bin\Debug\MacDock.pdb
+D:\svil_Giosh\006_MacDocControl\MacDock\MacDock\obj\Debug\MacDock.csproj.AssemblyReference.cache
+D:\svil_Giosh\006_MacDocControl\MacDock\MacDock\obj\Debug\MacDock.Properties.Resources.resources
+D:\svil_Giosh\006_MacDocControl\MacDock\MacDock\obj\Debug\MacDock.csproj.GenerateResource.cache
+D:\svil_Giosh\006_MacDocControl\MacDock\MacDock\obj\Debug\MacDock.csproj.CoreCompileInputs.cache
+D:\svil_Giosh\006_MacDocControl\MacDock\MacDock\obj\Debug\MacDock.exe
+D:\svil_Giosh\006_MacDocControl\MacDock\MacDock\obj\Debug\MacDock.pdb
+D:\svil_Giosh\006_MacDocControl\MacDock\MacDock\bin\Debug\Newtonsoft.Json.dll
+D:\svil_Giosh\006_MacDocControl\MacDock\MacDock\bin\Debug\Newtonsoft.Json.xml
+D:\svil_Giosh\006_MacDocControl\MacDock\MacDock\obj\Debug\MacDock.csproj.Up2Date
+D:\svil_Giosh\006_MacDocControl\MacDock\MacDock\bin\Debug\Newtonsoft.Json.Bson.dll
+D:\svil_Giosh\006_MacDocControl\MacDock\MacDock\bin\Debug\Newtonsoft.Json.Bson.pdb
+D:\svil_Giosh\006_MacDocControl\MacDock\MacDock\bin\Debug\Newtonsoft.Json.Bson.xml
+D:\svil_Giosh\006_MacDocControl\MacDock\MacDock\obj\Debug\MacDock.exe.config
