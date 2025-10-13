@@ -103,7 +103,7 @@ namespace MacDock
             TopMost = true;
             DoubleBuffered = true;
             BackColor = Color.Black;
-            Opacity = 0.6;
+            Opacity = 0.1;
             StartPosition = FormStartPosition.Manual;
 
             _hideTimer = new Timer { Interval = 200 };
