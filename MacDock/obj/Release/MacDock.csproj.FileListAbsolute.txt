@@ -48,10 +48,10 @@ D:\svil_Giosh\006_MacDock\MacDock\MacDock\bin\Release\tr\Microsoft.Win32.TaskSch
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\bin\Release\zh-CN\Microsoft.Win32.TaskScheduler.resources.dll
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\bin\Release\zh-Hant\Microsoft.Win32.TaskScheduler.resources.dll
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Release\MacDock.csproj.AssemblyReference.cache
-D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Release\MacDock.exe.config
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Release\MacDock.Properties.Resources.resources
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Release\MacDock.csproj.GenerateResource.cache
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Release\MacDock.csproj.CoreCompileInputs.cache
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Release\MacDock.csproj.Up2Date
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Release\MacDock.exe
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Release\MacDock.pdb
+D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Release\MacDock.MacDockControl.resources

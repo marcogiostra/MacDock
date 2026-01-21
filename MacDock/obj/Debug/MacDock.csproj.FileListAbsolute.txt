@@ -36,10 +36,10 @@ D:\svil_Giosh\006_MacDock\MacDock\MacDock\bin\Debug\tr\Microsoft.Win32.TaskSched
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\bin\Debug\zh-CN\Microsoft.Win32.TaskScheduler.resources.dll
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\bin\Debug\zh-Hant\Microsoft.Win32.TaskScheduler.resources.dll
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Debug\MacDock.csproj.AssemblyReference.cache
-D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Debug\MacDock.exe.config
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Debug\MacDock.Properties.Resources.resources
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Debug\MacDock.csproj.GenerateResource.cache
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Debug\MacDock.csproj.CoreCompileInputs.cache
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Debug\MacDock.csproj.Up2Date
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Debug\MacDock.exe
 D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Debug\MacDock.pdb
+D:\svil_Giosh\006_MacDock\MacDock\MacDock\obj\Debug\MacDock.MacDockControl.resources
