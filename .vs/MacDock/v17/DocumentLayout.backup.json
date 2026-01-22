@@ -10,16 +10,16 @@
       "RelativeMoniker": "D:0:0:{416E1FAB-E144-4241-983D-A0A58D87FD7A}|MacDock\\MacDock.csproj|solutionrelative:macdock\\changes.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{416E1FAB-E144-4241-983D-A0A58D87FD7A}|MacDock\\MacDock.csproj|D:\\svil_Giosh\\006_MacDock\\MacDock\\macdock\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{416E1FAB-E144-4241-983D-A0A58D87FD7A}|MacDock\\MacDock.csproj|solutionrelative:macdock\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{416E1FAB-E144-4241-983D-A0A58D87FD7A}|MacDock\\MacDock.csproj|D:\\svil_Giosh\\006_MacDock\\MacDock\\macdock\\macdockcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{416E1FAB-E144-4241-983D-A0A58D87FD7A}|MacDock\\MacDock.csproj|solutionrelative:macdock\\macdockcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{416E1FAB-E144-4241-983D-A0A58D87FD7A}|MacDock\\MacDock.csproj|D:\\svil_Giosh\\006_MacDock\\MacDock\\macdock\\macdockcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{416E1FAB-E144-4241-983D-A0A58D87FD7A}|MacDock\\MacDock.csproj|solutionrelative:macdock\\macdockcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{416E1FAB-E144-4241-983D-A0A58D87FD7A}|MacDock\\MacDock.csproj|d:\\svil_giosh\\006_macdock\\macdock\\macdock\\macdockcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{416E1FAB-E144-4241-983D-A0A58D87FD7A}|MacDock\\MacDock.csproj|solutionrelative:macdock\\macdockcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{416E1FAB-E144-4241-983D-A0A58D87FD7A}|MacDock\\MacDock.csproj|D:\\svil_Giosh\\006_MacDock\\MacDock\\macdock\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{416E1FAB-E144-4241-983D-A0A58D87FD7A}|MacDock\\MacDock.csproj|solutionrelative:macdock\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{416E1FAB-E144-4241-983D-A0A58D87FD7A}|MacDock\\MacDock.csproj|D:\\svil_Giosh\\006_MacDock\\MacDock\\macdock\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
@@ -52,7 +52,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\svil_Giosh\\006_MacDock\\MacDock\\MacDock\\Program.cs",
               "RelativeDocumentMoniker": "MacDock\\Program.cs",
@@ -60,8 +60,7 @@
               "RelativeToolTip": "MacDock\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T17:04:10.315Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-12T17:04:10.315Z"
             },
             {
               "$type": "Document",
@@ -69,8 +68,8 @@
               "Title": "MacDockControl.cs [Progettazione]",
               "DocumentMoniker": "D:\\svil_Giosh\\006_MacDock\\MacDock\\MacDock\\MacDockControl.cs",
               "RelativeDocumentMoniker": "MacDock\\MacDockControl.cs",
-              "ToolTip": "D:\\svil_Giosh\\006_MacDock\\MacDock\\MacDock\\MacDockControl.cs [Progettazione]",
-              "RelativeToolTip": "MacDock\\MacDockControl.cs [Progettazione]",
+              "ToolTip": "D:\\svil_Giosh\\006_MacDock\\MacDock\\MacDock\\MacDockControl.cs [Progettazione]*",
+              "RelativeToolTip": "MacDock\\MacDockControl.cs [Progettazione]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-12T17:03:57.227Z",
               "EditorCaption": " [Progettazione]"
@@ -95,20 +94,20 @@
               "RelativeDocumentMoniker": "MacDock\\CHANGES.md",
               "ToolTip": "D:\\svil_Giosh\\006_MacDock\\MacDock\\MacDock\\CHANGES.md*",
               "RelativeToolTip": "MacDock\\CHANGES.md*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABwAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
               "WhenOpened": "2025-10-13T06:50:01.788Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "MacDockControl.cs",
               "DocumentMoniker": "D:\\svil_Giosh\\006_MacDock\\MacDock\\MacDock\\MacDockControl.cs",
               "RelativeDocumentMoniker": "MacDock\\MacDockControl.cs",
-              "ToolTip": "D:\\svil_Giosh\\006_MacDock\\MacDock\\MacDock\\MacDockControl.cs",
-              "RelativeToolTip": "MacDock\\MacDockControl.cs",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAkwIAAAAANAAAAAAAAAA==",
+              "ToolTip": "D:\\svil_Giosh\\006_MacDock\\MacDock\\MacDock\\MacDockControl.cs*",
+              "RelativeToolTip": "MacDock\\MacDockControl.cs*",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAAAIcAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-13T06:48:33.718Z",
               "EditorCaption": ""

@@ -1,6 +1,10 @@
 Changelog
 =========
 
+v.1.3.1 - 22/01/2026
+--------------------------------------------------
+- quando sposto la finestra perchè è comparso la taskbar, ridisegno le icone
+
 v1.3.0 - 21/01/2026
 --------------------------------------------------
 - non è più sostabile ma sempre vicina la bottom

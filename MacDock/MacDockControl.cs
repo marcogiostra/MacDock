@@ -133,6 +133,7 @@ namespace MacDock
             if (m.Msg == WM_SETTINGCHANGE || m.Msg == WM_DISPLAYCHANGE)
             {
                 PosizionaFinestra();
+                RebuildIcons();
             }
         }
 
@@ -232,7 +233,7 @@ namespace MacDock
             }
             */
 
-            Opacity = 0.9;
+            //Opacity = 0.9;
             _isVisible = true;
         }
 
