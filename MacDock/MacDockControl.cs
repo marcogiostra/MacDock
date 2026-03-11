@@ -119,25 +119,52 @@ namespace MacDock
         protected override void WndProc(ref Message m)
         {
             const int WM_HOTKEY = 0x0312;
-
+            //
             const int WM_SETTINGCHANGE = 0x001A;
             const int WM_DISPLAYCHANGE = 0x007E;
+            //
+            const int WM_QUERYENDSESSION = 0x0011;
+            const int WM_ENDSESSION = 0x0016;
 
             if (m.Msg == WM_HOTKEY && m.WParam.ToInt32() == HOTKEY_ID)
             {
                 PortaInPrimoPiano();
             }
 
-            base.WndProc(ref m);
+            //base.WndProc(ref m);
 
             if (m.Msg == WM_SETTINGCHANGE || m.Msg == WM_DISPLAYCHANGE)
             {
                 PosizionaFinestra();
                 RebuildIcons();
             }
+            //
+            if (m.Msg == WM_QUERYENDSESSION)
+            {
+                // Windows sta chiedendo se può chiudere la sessione
+                ChiudiApplicazione();
+            }
+
+            if (m.Msg == WM_ENDSESSION)
+            {
+                // Windows sta effettivamente chiudendo
+                ChiudiApplicazione();
+            }
+
+            base.WndProc(ref m);
         }
 
-  
+        private void ChiudiApplicazione()
+        {
+            try
+            {
+                // eventuali salvataggi o cleanup
+                Application.Exit();
+            }
+            catch
+            {
+            }
+        }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {

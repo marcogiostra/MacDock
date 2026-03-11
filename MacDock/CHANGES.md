@@ -1,5 +1,8 @@
 Changelog
 =========
+v.1.4.0 - 11/03/2026
+--------------------------------------------------
+- Aggiunto ilcodice che controlal ache se al compiute e stato imposto di riavversi o di chiudere, automaticamente i programma si chiude da solo
 
 v.1.3.1 - 22/01/2026
 --------------------------------------------------
