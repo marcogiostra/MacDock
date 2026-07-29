@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
@@ -15,8 +16,32 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MacDock
 {
-   
 
+    #region UNUM
+    public enum AccentState
+    {
+        ACCENT_DISABLED = 0,
+        ACCENT_ENABLE_GRADIENT = 1,
+        ACCENT_ENABLE_TRANSPARENTGRADIENT = 2,
+        ACCENT_ENABLE_BLURBEHIND = 3,
+        ACCENT_ENABLE_ACRYLICBLURBEHIND = 4
+    }
+
+    public struct AccentPolicy
+    {
+        public AccentState AccentState;
+        public int AccentFlags;
+        public int GradientColor;
+        public int AnimationId;
+    }
+
+    public struct WindowCompositionAttributeData
+    {
+        public int Attribute;
+        public IntPtr Data;
+        public int SizeOfData;
+    }
+    #endregion UNUM
     public partial class MacDockControl : Form
     {
         private class DockItem
@@ -26,6 +51,11 @@ namespace MacDock
             public string IconPath { get; set; }
         }
 
+        [DllImport("user32.dll")]
+        public static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref WindowCompositionAttributeData data);
+
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
 
         [DllImport("user32.dll")]
         static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
@@ -38,6 +68,41 @@ namespace MacDock
 
         [DllImport("user32.dll")]
         static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+        
+        [DllImport("dwmapi.dll")]
+        private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
+
+        [DllImport("dwmapi.dll")]
+        private static extern int DwmExtendFrameIntoClientArea(IntPtr hwnd, ref Margins margins);
+
+        
+        // ============ STRUTTURE ============
+        [StructLayout(LayoutKind.Sequential)]
+        public struct AccentPolicy
+        {
+            public int AccentState;
+            public int AccentFlags;
+            public int GradientColor;
+            public int AnimationId;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct WindowCompositionAttributeData
+        {
+            public int Attribute;
+            public IntPtr Data;
+            public int SizeOfData;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct Margins
+        {
+            public int Left;
+            public int Right;
+            public int Top;
+            public int Bottom;
+        }
+
 
         const uint MOD_ALT = 0x0001;
         const uint MOD_CONTROL = 0x0002;
@@ -73,28 +138,32 @@ namespace MacDock
 
         private System.Windows.Forms.ToolTip _toolTip;
         #endregion DICHIARAZIONI
-   
 
+        #region CLASS
         public MacDockControl()
         {
             
 
             this.Height = _dockSize;
 
-            FormBorderStyle = FormBorderStyle.None;
-            ShowInTaskbar = false;
-            //TopMost = true;
-            DoubleBuffered = true;
-            BackColor = Color.Black;
-            //Opacity = 50;
-            StartPosition = FormStartPosition.Manual;
+           
 
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.ShowInTaskbar = false;
+            //this.TopMost = true;
+            this.BackColor = Color.FromArgb(200, 200, 200); // Grigio chiaro trasparente
+            this.Opacity = 0.90;
+            //this.StartPosition = FormStartPosition.Manual;
+            //this.Height = 70;
+            //this.Width = Screen.PrimaryScreen.Bounds.Width;
+            //this.Location = new Point(0, Screen.PrimaryScreen.Bounds.Height - this.Height);
+            //@@@this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
 
             _toolTip = new System.Windows.Forms.ToolTip();
 
-         
             LoadItems();
             RebuildIcons();
+            
 
             this.ContextMenuStrip = BuildMainContextMenu();
         }
@@ -114,7 +183,30 @@ namespace MacDock
                 MessageBox.Show("HotKey già in uso");
 
             PosizionaFinestra();
+
+            // INVECE DI EnableBlurBehind() USA QUESTO:
+            //NON ATTIVARE EnableAcrylicBlur(this.Handle, 200);
+
         }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            UnregisterHotKey(this.Handle, HOTKEY_ID);
+            base.OnFormClosing(e);
+        }
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+
+            // Assicurati che il dock parta completamente visibile
+            ShowDock();
+
+            // Ora che il Form ha dimensioni corrette, ricostruisci le icone
+            RebuildIcons();
+       
+        }
+        #endregion CLASS
+
 
         protected override void WndProc(ref Message m)
         {
@@ -154,6 +246,46 @@ namespace MacDock
             base.WndProc(ref m);
         }
 
+  
+        public void EnableAcrylicBlur(IntPtr handle, int alpha = 180)
+        {
+            try
+            {
+                this.BackColor = Color.FromArgb(200, 200, 200);
+                this.TransparencyKey = Color.FromArgb(200, 200, 200);
+
+                var margins = new Margins { Left = -1, Right = -1, Top = -1, Bottom = -1 };
+                DwmExtendFrameIntoClientArea(handle, ref margins);
+
+                var accent = new AccentPolicy
+                {
+                    AccentState = (int)AccentState.ACCENT_ENABLE_ACRYLICBLURBEHIND,
+                    AccentFlags = 0x20 | 0x40 | 0x80,
+                    GradientColor = (alpha << 24) | 0xFFFFFF
+                };
+
+                var accentStructSize = Marshal.SizeOf(accent);
+                var accentPtr = Marshal.AllocHGlobal(accentStructSize);
+                Marshal.StructureToPtr(accent, accentPtr, false);
+
+                var data = new WindowCompositionAttributeData
+                {
+                    Attribute = 19,
+                    Data = accentPtr,
+                    SizeOfData = accentStructSize
+                };
+
+                SetWindowCompositionAttribute(handle, ref data);
+                Marshal.FreeHGlobal(accentPtr);
+            }
+            catch (Exception ex)
+            {
+                this.Opacity = 0.9;
+                this.BackColor = Color.FromArgb(200, 200, 200);
+            }
+        }
+
+        #region f()_APP
         private void ChiudiApplicazione()
         {
             try
@@ -166,21 +298,14 @@ namespace MacDock
             }
         }
 
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            UnregisterHotKey(this.Handle, HOTKEY_ID);
-            base.OnFormClosing(e);
-        }
-
-
-        void PortaInPrimoPiano()
+         void PortaInPrimoPiano()
         {
             if (WindowState == FormWindowState.Minimized)
                 ShowWindow(this.Handle, SW_RESTORE);
 
             SetForegroundWindow(this.Handle);
         }
-
+        #endregion f()_APP
 
 
         // --- PERSISTENZA ---
@@ -210,88 +335,16 @@ namespace MacDock
             catch { /* ignore errors */ }
         }
 
-        protected override void OnShown(EventArgs e)
-        {
-            base.OnShown(e);
-
-            // Assicurati che il dock parta completamente visibile
-            ShowDock();
-
-            // Ora che il Form ha dimensioni corrette, ricostruisci le icone
-            RebuildIcons();
-
-            // Attiva timer per riduzione automatica
-            //_hideTimer.Start();
-        }
-
         private void ShowDock()
         {
             Rectangle screen = Screen.PrimaryScreen.Bounds;
-
-            /*
-            switch (_dockPosition)
-            {
-                case DockPosition.Bottom:
-                 
-                    Top = screen.Bottom - _dockSize - 3; // leggermente sopra la taskbar
-                    Left = 0;
-                    Width = screen.Width;
-                    Height = _dockSize;
-                    SetWindowPos(Handle, HWND_TOPMOST, Left, Top, Width, Height, SWP_SHOWWINDOW | SWP_NOACTIVATE);
-                    break;
-                case DockPosition.Top:
-                    Top = screen.Top;
-                    Left = 0;
-                    Width = screen.Width;
-                    Height = _dockSize;
-                    break;
-                case DockPosition.Left:
-                    Left = screen.Left;
-                    Top = 0;
-                    Width = _dockSize;
-                    Height = screen.Height;
-                    break;
-                case DockPosition.Right:
-                    Left = screen.Right - _dockSize;
-                    Top = 0;
-                    Width = _dockSize;
-                    Height = screen.Height;
-                    break;
-            }
-            */
 
             //Opacity = 0.9;
             _isVisible = true;
         }
 
-        /*
-        private void HideDock()
-        {
-            if (!_isVisible) return;
-            _isVisible = false;
 
-            Rectangle screen = Screen.PrimaryScreen.Bounds;
-            switch (_dockPosition)
-            {
-                case DockPosition.Bottom:
-                    Top = screen.Bottom - _hiddenSize;
-                    break;
-                case DockPosition.Top:
-                    Top = screen.Top - (_dockSize - _hiddenSize);
-                    break;
-                case DockPosition.Left:
-                    Left = screen.Left - (_dockSize - _hiddenSize);
-                    break;
-                case DockPosition.Right:
-                    Left = screen.Right - _hiddenSize;
-                    break;
-            }
-
-            Opacity = 0.6;
-        }
-        */
-
-        // --- RICOSTRUZIONE ICONE ---  
+        #region ICONE  
         private void RebuildIcons()
         {
             Controls.Clear();
@@ -398,7 +451,6 @@ namespace MacDock
             }
         }
 
-
         private void RemoveProgram(DockItem item)
         {
             if (MessageBox.Show($"Rimuovere '{item.Name}' dalla Dock?", "Conferma",
@@ -410,7 +462,29 @@ namespace MacDock
             }
         }
 
-        // --- MENU PRINCIPALE DOCK (sfondo) ---
+        private void AddProgram()
+        {
+            using (OpenFileDialog dlg = new OpenFileDialog())
+            {
+                dlg.Filter = "Applicazioni (*.exe)|*.exe";
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    var item = new DockItem
+                    {
+                        Name = Path.GetFileNameWithoutExtension(dlg.FileName),
+                        Path = dlg.FileName,
+                        IconPath = ""
+                    };
+
+                    _items.Add(item);
+                    SaveItems();
+                    RebuildIcons();
+                }
+            }
+        }
+        #endregion ICONE  
+
+        #region MENU
         private ContextMenuStrip BuildMainContextMenu()
         {
             var menu = new ContextMenuStrip();
@@ -426,6 +500,9 @@ namespace MacDock
                 }
             });
 
+            var refresh = new ToolStripMenuItem("Refresh icon", null, (s, e) => RebuildIcons());
+            var resetposition = new ToolStripMenuItem("Riposizione Dock", null, (s, e) => PosizionaFinestra());
+
             var exit = new ToolStripMenuItem("Chiudi Dock", null, (s, e) => Close());
 
             // Nuova voce: avvio automatico
@@ -440,11 +517,13 @@ namespace MacDock
                     DisableAutoStart();
             };
 
-            menu.Items.AddRange(new ToolStripItem[] { add, clear, new ToolStripSeparator(), autostartMenu, new ToolStripSeparator(), exit });
+            menu.Items.AddRange(new ToolStripItem[] { add, clear, new ToolStripSeparator(), refresh, resetposition, new ToolStripSeparator(), autostartMenu, new ToolStripSeparator(), exit });
 
             return menu;
         }
+        #endregion MENU
 
+        #region AUTOSTART
         private void EnableAutoStart()
         {
             string exePath = Application.ExecutablePath;
@@ -486,33 +565,15 @@ namespace MacDock
             using (TaskService ts = new TaskService())
                 ts.RootFolder.DeleteTask(TaskName, false);
         }
-
         private bool IsAutoStartEnabled()
         {
             using (TaskService ts = new TaskService())
                 return ts.GetTask(TaskName) != null;
         }
+        #endregion AUTOSTART
 
-        private void AddProgram()
-        {
-            using (OpenFileDialog dlg = new OpenFileDialog())
-            {
-                dlg.Filter = "Applicazioni (*.exe)|*.exe";
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    var item = new DockItem
-                    {
-                        Name = Path.GetFileNameWithoutExtension(dlg.FileName),
-                        Path = dlg.FileName,
-                        IconPath = ""
-                    };
 
-                    _items.Add(item);
-                    SaveItems();
-                    RebuildIcons();
-                }
-            }
-        }
+     
 
    
 
@@ -535,6 +596,8 @@ namespace MacDock
 
         }
 
+    
+
         protected override void OnResize(EventArgs e)
         {
             base.OnResize(e);
@@ -543,5 +606,7 @@ namespace MacDock
 
    
     }
+
+
 }
 
